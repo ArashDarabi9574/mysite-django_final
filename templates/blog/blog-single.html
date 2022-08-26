@@ -55,7 +55,7 @@
 						<div class="detials">
 							<p>Prev Post</p>
 							{% if prevpost %}
-							<a style="color:rgb(0, 0, 0);" href="{{ STATIC_URL }}/blog/{{prevpost.id}}">#####
+							<a style="color:rgb(0, 0, 0);" href="{{ STATIC_URL }}/blog/{{prevpost.id}}">{{prevpost}}
 							</a>
 							{% endif %}
 						</div>
@@ -68,7 +68,7 @@
 						<div class="detials">
 							<p>Next Post</p>
 							{% if nextpost %}
-							<a style="color:rgb(0, 0, 0);" href="{{ STATIC_URL }}/blog/{{nextpost.id}}">#####
+							<a style="color:rgb(0, 0, 0);" href="{{ STATIC_URL }}/blog/{{nextpost.id}}">{{nextpost}}
 							</a>
 							{% endif %}
 						</div>

@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% load blog_tags %}
+<!--Breadcrumbs-->
+<div class="col-lg-12 top2">
+	<div class="container">
+
+		<ul class="breadcrumb">
+
+			<li><a href="{% url 'website:about' %}">Home</a></li>
+
+			<li class="active">Blog</li>
+
+		</ul>
+
+	</div>
+</div>
+<!--Breadcrumbs-->
+
+<!--Blog Body-->
+
+<div class="container">
+	<div class="row">
+
+		<div class="col-md-8">
+			<div class="panel">
+				<div class="panel-body">
+
+
+					<!--/Blog Posts-->
+					{% for post in posts %}
+					<div class="row posts">
+						<br>
+						<div class="col-md-2 col-sm-3 text-center">
+							<a class="story-img" href="{% url 'blog:single' pid=post.id %}"><img
+									src="{{post.image.url}}" style="width:100px;height:100px"
+									class="img-circle"></a>
+						</div>
+						<div class="col-md-10 col-sm-9">
+							<h3 href="{% url 'blog:single' pid=post.id %}">{{post.title}}</h3>
+							<div class="row">
+								<div class="col-xs-9">
+									<p>{{post.content|truncatewords:41|safe }}</p>
+									<p class="lead" ><button class=" btn btn-default btn-hover"><a
+											href="{% url 'blog:single' pid=post.id %}">Read
+											More</a></button></p>
+									{% for cat in post.category.all %}
+									<p class="pull-right"><span class="label label-default"><a
+												href="{% url 'blog:category' cat_name=cat.name %}">{{cat.name }}</a></span>
+										{% endfor %}
+									<ul class="list-inline">
+										<li><a
+												href="{% url 'blog:author' author_username=post.author.username %}"><i
+													class="fa fa-comment"></i>{{post.author.get_full_name}}</a>
+										</li>
+										<li><a href="#">{{post.published_at|date:"d M Y"}}</a></li>
+
+										<li><a href="#"><i class="fa fa-share"></i>{{post.content_view}}
+												Views</a></li>
+									</ul>
+								</div>
+								<div class="col-xs-3"></div>
+							</div>
+							<br><br>
+						</div>
+					</div>
+					{% endfor %}
+					<!--/Blog Posts-->
+
+
+
+
+
+				</div>
+				<!--Pagniation-->
+				<div class="container">
+					<div class="row table">
+						<div class="text-center col-lg-8">
+							<a class="btn btn-default btn-hover btn-block toggle-pagination"><i
+									class="glyphicon glyphicon-plus"></i> Toggle Pagination</a>
+							<ul class="pagination pagination-responsive pagination-lg">
+
+								{% if posts.has_previous %}
+								<li><a href="?page={{ posts.previous_page_number }}">&laquo;</a></li>
+								{% endif %}
+								{% for i in posts.paginator.page_range %}
+								{% if posts.number == i %}
+								<li><a href="?page={{i}}">{{i}}</a></li>
+								{% else %}
+								<li><a href="?page={{i}}">{{i}}</a></li>
+								{% endif %}
+								{% endfor %}
+								{% if posts.has_next %}
+								<li><a href="?page={{ posts.next_page_number }}">&raquo;</a></li>
+								{% endif %}
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!--Pagniation End-->
+			</div>
+
+
+
+		</div>
+		<!--/col-8-->
+		<!--Sidebar Start-->
+		<div class="col-md-4">
+
+			<!-- Blog Search Well -->
+			{% include 'blog/blog-search.html'%}
+
+			{% postcategories %}
+			{% include 'blog/side-widget.html'%}
+			<!-- Blog Categories Well -->
+
+
+			<!-- Side Widget Well -->
+
+
+		</div>
+		<!--Sidebar End-->
+	</div>
+	{% endblock %}

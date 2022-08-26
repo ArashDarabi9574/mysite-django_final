@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% load blog_tags %}
+
+<!--Slider Start-->
+<div class="slider_outer">
+	<div id="slider1_container" style="position: relative; margin: 0 auto;
+        top: 0px; left: 0px; width: 1300px; height: 500px; overflow: hidden;">
+        <!-- Loading Screen -->
+        <div u="loading" style="position: absolute; top: 0px; left: 0px;">
+            <div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block;
+                top: 0px; left: 0px; width: 100%; height: 100%;">
+            </div>
+            <div style="position: absolute; display: block; background: url(img/loading.gif) no-repeat center center;
+                top: 0px; left: 0px; width: 100%; height: 100%;">
+            </div>
+        </div>
+        <!-- Slides Container -->
+        <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 1300px;
+            height: 500px; overflow: hidden;">
+
+            
+            {% ourblog %}
+            
+
+
+        </div>
+                
+        
+        <!-- bullet navigator container -->
+        <div u="navigator" class="jssorb21" style="bottom: 26px; right: 6px;">
+            <!-- bullet navigator item prototype -->
+            <div u="prototype"></div>
+        </div>
+        
+        
+        <span u="arrowleft" class="jssora21l" style="top: 123px; left: 8px;">
+        </span>
+        
+        <span u="arrowright" class="jssora21r" style="top: 123px; right: 8px;">
+        </span>
+        
+    </div>
+</div>
+<!--Slider Start-->
+
+<!--Main Body-->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 top3">
+        
+            <p>I love html. CSS. It is simple to learn, personalize, and great for fast development of responsive sites. Whether you are a seasoned developer/designer or someone learning the basics of web design and development, html. CSS is great way to start with all of its out-of-the-box parts.
+    
+    Building sites for several years has given us an appreciation for the hard work and time it takes to generate pretty work. They also understand the worth of using themes & templates to kickstart the design & development process.
+    
+    html. CSS has come a long way and they desired to generate an amazing marketplace for html. CSS lovers like ourselves.For Further Free Templates signup our newsletter</p> 
+          <hr>
+          <h1 class="top1">Our Mission</h1>
+        <p>To be the #1 community for free supplier of html. CSS themes and templates.</p>
+        </div>
+    <!--Sidebar Start-->
+    <div class="col-md-4 top3">
+
+                <!-- Blog Search Well -->
+                
+
+                    <!-- Blog Search Well -->
+                    {% include 'blog/blog-search.html'%}
+                    
+                    {% postcategories %}
+                    {% include 'blog/side-widget.html'%}
+                    <!-- Blog Categories Well -->
+                    
+        
+                    <!-- Side Widget Well -->
+                    
+        
+                
+
+            </div>
+     <!--Sidebar End-->
+     
+  </div>
+  <!--Pagniation-->
+
+<!--Pagniation End-->
+
+{% endblock %}

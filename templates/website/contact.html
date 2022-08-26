@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% load blog_tags %}
+    <!--Breadcrumbs-->
+    <div class="col-lg-12 top2">
+	<div class="container">
+ 
+	<ul class="breadcrumb">
+ 
+	    <li><a href="{% url 'website:about' %}">Home</a></li>
+ 
+	    <li class="active">Contact</li>
+ 
+	</ul>
+ 
+ </div>
+ </div>
+ <!--Breadcrumbs-->
+ 
+<!--Main Body-->
+<div class="container">
+<div class="row">
+    <div class="col-lg-8">
+	    <form class="form-horizontal" role="form" action="{% url 'website:contact' %}"  method="post" >
+		{% csrf_token %}
+		
+		   <div class="form-group">
+			  <label for="name" class="col-sm-2 control-label">Name</label>
+			  <div class="col-sm-10">
+				<input name="name" placeholder="Enter your name" this.placeholder = ''
+				 this.placeholder = 'Enter your name'
+				class="common-input mb-20 form-control" required="" type="text">
+			  </div>
+		   </div>
+		   <div class="form-group">
+			  <label for="email" class="col-sm-2 control-label">Email</label>
+			  <div class="col-sm-10">
+				<input name="email" placeholder="Enter email address"
+				pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$"
+				this.placeholder = ''
+				this.placeholder = 'Enter email address'
+				class="common-input mb-20 form-control" required="" type="email">
+
+			  </div>
+		   </div>
+		   <div class="form-group">
+			<label for="subject" class="col-sm-2 control-label">subject</label>
+			<div class="col-sm-10">
+				<input name="subject" placeholder="Enter subject" this.placeholder = ''
+				this.placeholder = 'Enter subject'
+				class="common-input mb-20 form-control" type="text">
+			</div>
+		 </div>
+		   <div class="form-group">
+			  <label for="message" class="col-sm-2 control-label">Message</label>
+			  <div class="col-sm-10">
+				<textarea class="common-textarea form-control" name="message"
+				placeholder="Enter Messege"  this.placeholder = ''
+			     this.placeholder = 'Enter Messege' required=""></textarea>
+			  </div>
+		   </div>
+		
+		   <div class="col-lg-12">
+			
+			<div class="alert-msg" style="text-align: center;"></div>
+			<button type="submit" class="genric-btn primary" style="float: right;">Send Message</button>
+		</div>
+		   
+	    </form> 
+    </div>
+  
+ <!--Sidebar Start-->
+ <div class="col-md-4 top3">
+
+	<!-- Blog Search Well -->
+
+
+	  <!-- Blog Search Well -->
+	  {% include 'blog/blog-search.html'%}
+	  
+	  {% postcategories %}
+	  {% include 'blog/side-widget.html'%}
+	  <!-- Blog Categories Well -->
+	  
+
+	  <!-- Side Widget Well -->
+	  
+
+
+
+ </div>
+  <!--Sidebar End-->
+</div>
+
+{% endblock %}

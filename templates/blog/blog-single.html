@@ -1,0 +1,138 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% load blog_tags %}
+<!--Breadcrumbs-->
+<div class="col-lg-12 top2">
+	<div class="container">
+
+		<ul class="breadcrumb">
+
+			<li><a href="{% url 'website:about' %}">Home</a></li>
+
+			<li class="active">Post Title</li>
+
+		</ul>
+	</div>
+
+</div>
+<!--Breadcrumbs-->
+
+<!--Main Body-->
+<div class="container">
+	<div class="row">
+		<div class="col-lg-8">
+			<div class="col-md-12">
+				<h1>{{post.title}}</h1>
+				<div class="entry-meta table">
+					<span>
+						Written by:
+						<a
+							href="{% url 'blog:author' author_username=post.author.username %}">{{post.author.get_full_name}}</a>
+					</span>
+					<span>{{post.published_at|date:"d M Y"}}</span>
+					<span>{{post.content_view}} Views</span>
+					<span>
+						{% for tag in post.tags.all %}
+						<li><a href="{% url 'blog:tag' tag_name=tag.name %}">{{tag.name}}</a></li>
+						{% endfor %}
+					</span>
+				</div>
+				<div>
+					<img src="{{post.image.url}}" class="img-responsive" alt="fashion">
+				</div>
+				<div class="media">
+					<p>{{post.content|safe}}</p>
+
+				</div>
+
+			</div>
+			<div class="navigation-area">
+				<div class="row">
+					<div
+						class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
+
+						<div class="detials">
+							<p>Prev Post</p>
+							{% if prevpost %}
+							<a style="color:rgb(0, 0, 0);" href="{{ STATIC_URL }}/blog/{{prevpost.id}}">#####
+							</a>
+							{% endif %}
+						</div>
+					</div>
+					<div
+						class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
+
+
+
+						<div class="detials">
+							<p>Next Post</p>
+							{% if nextpost %}
+							<a style="color:rgb(0, 0, 0);" href="{{ STATIC_URL }}/blog/{{nextpost.id}}">#####
+							</a>
+							{% endif %}
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<!--Sidebar Start-->
+		<div class="col-md-4 top3">
+
+
+
+			<!-- Blog Search Well -->
+			{% include 'blog/blog-search.html'%}
+
+			{% postcategories %}
+			{% include 'blog/side-widget.html'%}
+			<!-- Blog Categories Well -->
+			
+
+			<!-- Side Widget Well -->
+
+
+
+
+		</div>
+		<!--Sidebar End-->
+		
+		<!--Comment-->
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8">
+					<h2 class="page-header">Comments</h2>
+					<section class="comment-list">
+
+						<div id="disqus_thread"></div>
+						<script>
+							/**
+							*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+							*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+							/*
+							var disqus_config = function () {
+							this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+							this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+							};
+							*/
+							(function () { // DON'T EDIT BELOW THIS LINE
+								var d = document, s = d.createElement('script');
+								s.src = 'https://127-0-0-1-8000-zr7ug5cati.disqus.com/embed.js';
+								s.setAttribute('data-timestamp', +new Date());
+								(d.head || d.body).appendChild(s);
+							})();
+						</script>
+						<noscript>Please enable JavaScript to view the <a
+								href="https://disqus.com/?ref_noscript">comments powered by
+								Disqus.</a></noscript>
+					</section>
+				</div>
+			</div>
+		</div>
+		<!--Comment End-->
+	</div>
+
+
+	{% endblock %}

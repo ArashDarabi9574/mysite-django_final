@@ -1,0 +1,16 @@
+{% load static %}
+<div class="well">
+    <h4>Blog Categories</h4>
+    <div class="row">
+
+        <div class="col-lg-6">
+            <ul class="list-unstyled">
+                {% for name,count in categories.items %}
+                <li><a href="{% url 'blog:category' cat_name=name%}" class="d-flex justify-content-between"><p>{{name}}   {{count}}</p></a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <!-- /.row -->
+</div>
